@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Type = Oczko.Type;
 
-namespace PolishBlackJack
+namespace Oczko
 {
     internal class Deck
     {

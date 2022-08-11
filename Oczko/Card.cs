@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PolishBlackJack
+namespace Oczko
 {
     enum Type
     {

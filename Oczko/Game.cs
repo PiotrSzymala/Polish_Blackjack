@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PolishBlackJack
+namespace Oczko
 {
     internal static class Game
     {
@@ -37,14 +37,18 @@ namespace PolishBlackJack
         {
             if (sum == 21)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"{sum} - Blackjack, you won!");
+                Console.ResetColor();
                 Console.ReadKey();
                 return true;
             }
 
             if (sum < 22) return false;
 
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"{sum} - Too much, you lost!");
+            Console.ResetColor();
             Console.ReadKey();
 
             return true;
@@ -57,10 +61,10 @@ namespace PolishBlackJack
 
             Console.WriteLine($"Player #1 score: {p1Score}");
             Console.WriteLine($"Player #2 score: {p2Score}");
-
+            
             if (p1Score > 22 && p2Score > 22)
                 score = "There is no winner";
-
+            
             else if (p1Score < 22 && p2Score < 22)
                 score = Math.Max(p1Score, p2Score) == p1Score ? "Player #1 is the winner" : "Player #2 is the winner";
 
@@ -70,9 +74,12 @@ namespace PolishBlackJack
             else
                 score = Math.Min(p1Score, p2Score) == p1Score ? "Player #1 is the winner" : "Player #2 is the winner";
 
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
+           
             Console.WriteLine();
             Console.WriteLine(score);
+           
+            Console.ResetColor();
         }
     }
 }
