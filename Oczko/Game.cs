@@ -8,7 +8,6 @@ namespace Oczko
         public static void PlayerTurn(List<Card> deck, out int sum, ref int i)
         {
             sum = 0;
-            string userInput;
 
             do
             {
@@ -17,20 +16,28 @@ namespace Oczko
 
                 if (EarlyWinOrLose(sum))
                     break;
-
-                Console.WriteLine("Would you like to draw another card? y / n");
-                userInput = Console.ReadLine();
-
+                
+                Console.WriteLine("Would you like to draw another card? Press n or escape to stop");
+                
                 i++;
 
-            } while (Escape(userInput));
+            } while (KeyExit());
 
             Console.Clear();
         }
 
-        static bool Escape(string userInput)
+        private static bool KeyExit()
         {
-            return userInput.ToLower() != "n";
+
+            ConsoleKeyInfo userKey = Console.ReadKey(true);
+            switch (userKey.Key)
+            {
+                case ConsoleKey.N:
+                case ConsoleKey.Escape:
+                    return false;
+            }
+
+            return true;
         }
 
         private static bool EarlyWinOrLose(int sum)
@@ -61,10 +68,10 @@ namespace Oczko
 
             Console.WriteLine($"Player #1 score: {p1Score}");
             Console.WriteLine($"Player #2 score: {p2Score}");
-            
+
             if (p1Score > 22 && p2Score > 22)
                 score = "There is no winner";
-            
+
             else if (p1Score < 22 && p2Score < 22)
                 score = Math.Max(p1Score, p2Score) == p1Score ? "Player #1 is the winner" : "Player #2 is the winner";
 
@@ -75,11 +82,12 @@ namespace Oczko
                 score = Math.Min(p1Score, p2Score) == p1Score ? "Player #1 is the winner" : "Player #2 is the winner";
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-           
+
             Console.WriteLine();
             Console.WriteLine(score);
-           
+
             Console.ResetColor();
         }
+
     }
 }
