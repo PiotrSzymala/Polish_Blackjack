@@ -2,7 +2,7 @@
 
 namespace Oczko
 {
-    enum Type
+    public enum Type
     {
         Two = 2,
         Three = 3,
@@ -18,8 +18,8 @@ namespace Oczko
         King = Four,
         Ace = 11
     }
-    
-    internal class Card : IComparable<Card>
+
+    public class Card : IComparable<Card>
     {
         public string Name { get; set; }
         public Type Type { get; set; }

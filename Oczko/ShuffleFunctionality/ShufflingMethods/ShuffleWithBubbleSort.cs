@@ -1,21 +1,15 @@
-﻿using System;
+﻿using Oczko.ShuffleFunctionality;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oczko
+namespace Oczko.ShufflingMethods
 {
-    internal class CardShuffler
+    public class ShuffleWithBubbleSort : IShuffleDeck
     {
-        private Deck _deck;
-
-        public CardShuffler(Deck deck)
-        {
-            _deck = deck;
-        }
-
-        internal static void Shuffle(List<Card> deck)
+        public void Shuffle(List<Card> deck)
         {
             Random random = new Random();
 

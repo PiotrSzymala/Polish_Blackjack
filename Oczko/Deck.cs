@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oczko.ShufflingMethods;
+using System;
 using System.Collections.Generic;
 using Type = Oczko.Type;
 
@@ -35,7 +36,8 @@ namespace Oczko
                 }
             }
 
-            CardShuffler.Shuffle(deck);
+            ShuffleWithBubbleSort sf = new ShuffleWithBubbleSort();
+            sf.Shuffle(deck);
             
             return deck;
         }
