@@ -34,24 +34,10 @@ namespace Oczko
                     deck.Add(card);
                 }
             }
-           
-            Shuffle(deck);
+
+            CardShuffler.Shuffle(deck);
             
             return deck;
-        }
-
-        private static void Shuffle(List<Card> deck)
-        {
-            Random random = new Random();
-
-            for (int i = deck.Count - 1; i > 0; i--)
-            {
-                int j = random.Next(0,i+1);
-
-                var temp = deck[i];
-                deck[i] = deck[j];
-                deck[j] = temp;
-            }
         }
     }
 }

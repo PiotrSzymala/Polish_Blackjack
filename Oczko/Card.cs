@@ -30,5 +30,6 @@ namespace Oczko
             return Type.CompareTo(other.Type)==0 ? Name.CompareTo(other.Name) : Type.CompareTo(other.Type);
         }
         public override string ToString() => $"{Name}";
+
     }
 }
