@@ -1,6 +1,7 @@
 ﻿using Oczko.ShufflingMethods;
 using System;
 using System.Collections.Generic;
+using Oczko.ShuffleFunctionality;
 using Type = Oczko.Type;
 
 namespace Oczko
@@ -35,9 +36,9 @@ namespace Oczko
                     deck.Add(card);
                 }
             }
-
-            ShuffleWithBubbleSort sf = new ShuffleWithBubbleSort();
-            sf.Shuffle(deck);
+            FisherYatesShuffle fisherYatesShuffle = new FisherYatesShuffle();
+            CardShuffler cardShuffler = new CardShuffler(deck, fisherYatesShuffle);
+            cardShuffler.Shuffle();
             
             return deck;
         }

@@ -2,22 +2,6 @@
 
 namespace Oczko
 {
-    public enum Type
-    {
-        Two = 2,
-        Three = 3,
-        Four = 4,
-        Five = 5,
-        Six = 6,
-        Seven = 7,
-        Eight = 8,
-        Nine = 9,
-        Ten = 10,
-        Jack = Two,
-        Queen = Three,
-        King = Four,
-        Ace = 11
-    }
 
     public class Card : IComparable<Card>
     {
@@ -30,6 +14,5 @@ namespace Oczko
             return Type.CompareTo(other.Type)==0 ? Name.CompareTo(other.Name) : Type.CompareTo(other.Type);
         }
         public override string ToString() => $"{Name}";
-
     }
 }

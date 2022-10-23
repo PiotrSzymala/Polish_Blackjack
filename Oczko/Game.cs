@@ -5,30 +5,61 @@ namespace Oczko
 {
     internal static class Game
     {
-        public static void PlayerTurn(List<Card> deck, out int sum, ref int i)
+        public static void Play(Player player)
         {
-            sum = 0;
-
+            var deck = Deck.Generate();
+            int i = 0;
+            
+            Console.WriteLine($"{player.Nickname} - time to shine!");
+            
             do
             {
                 Console.WriteLine(deck[i]);
-                sum += (int)deck[i].Type;
 
-                if (EarlyWinOrLose(sum))
+                player.Points += (int)deck[i].Type;
+
+                if (EarlyWinOrLose(player.Points))
                     break;
-                
+
                 Console.WriteLine("Would you like to draw another card? Press n or escape to stop");
-                
+
                 i++;
 
             } while (KeyExit());
 
             Console.Clear();
+
+            Console.WriteLine($"{player.Nickname} points: {player.Points}");
+
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        private static bool EarlyWinOrLose(int points)
+        {
+            if (points == 21)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"{points} - Blackjack, you won!");
+                Console.ResetColor();
+                Console.ReadKey();
+                return true;
+            }
+
+            if (points >= 22)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{points} - Too much, you lost!");
+                Console.ResetColor();
+                Console.ReadKey();
+                return true;
+            }
+
+            return false;
         }
 
         private static bool KeyExit()
         {
-
             ConsoleKeyInfo userKey = Console.ReadKey(true);
             switch (userKey.Key)
             {
@@ -39,55 +70,5 @@ namespace Oczko
 
             return true;
         }
-
-        private static bool EarlyWinOrLose(int sum)
-        {
-            if (sum == 21)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"{sum} - Blackjack, you won!");
-                Console.ResetColor();
-                Console.ReadKey();
-                return true;
-            }
-
-            if (sum < 22) return false;
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"{sum} - Too much, you lost!");
-            Console.ResetColor();
-            Console.ReadKey();
-
-            return true;
-
-        }
-
-        public static void Win(int p1Score, int p2Score)
-        {
-            string score;
-
-            Console.WriteLine($"Player #1 score: {p1Score}");
-            Console.WriteLine($"Player #2 score: {p2Score}");
-
-            if (p1Score > 22 && p2Score > 22)
-                score = "There is no winner";
-
-            else if (p1Score < 22 && p2Score < 22)
-                score = Math.Max(p1Score, p2Score) == p1Score ? "Player #1 is the winner" : "Player #2 is the winner";
-
-            else if (p1Score == p2Score)
-                score = "Draw";
-
-            else
-                score = Math.Min(p1Score, p2Score) == p1Score ? "Player #1 is the winner" : "Player #2 is the winner";
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-
-            Console.WriteLine();
-            Console.WriteLine(score);
-
-            Console.ResetColor();
-        }
-
     }
 }

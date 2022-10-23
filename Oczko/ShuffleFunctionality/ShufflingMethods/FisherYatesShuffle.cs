@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Oczko.ShufflingMethods
 {
-    public class ShuffleWithBubbleSort : IShuffleDeck
+    public class FisherYatesShuffle : IShuffleDeck
     {
         public void Shuffle(List<Card> deck)
         {
